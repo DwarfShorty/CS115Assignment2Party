@@ -199,9 +199,27 @@ public class Profile {
 	}
 	
 	//DEBUGGNG METHODS (NOT FOR USE IN FINAL PROGRAM)
+	/**
+	 * format profile data to readable string format
+	 */
 	public String toString() {
-		String s;
-		
+		String s = "-----START  REPORT-----";
+		s += String.format("Name: %s, %s\n", lastName, firstName);
+		s += String.format("DoB: %s\n", getDateOfBirth());
+		s += String.format("Email Address: %s\n", email);
+		s += "Interests:\n";
+		for (String item : interests) {
+			s += String.format("  - %s\n", item);
+		}
+		s += "Activities and Groups:\n";
+		for (String item : activitiesAndGroups) {
+			s += String.format("  - %s\n", item);
+		}
+		s += "Friends:\n";
+		for (Profile profile : friends) {
+			s += String.format("  - Friend Name: %s, %s\n", profile.lastName, profile.firstName);
+		}
+		s += "-----END OF REPORT-----";
 		return s;
 	}
 	
