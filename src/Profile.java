@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 /**
  * Profile.java
@@ -29,7 +30,14 @@ public class Profile {
 	 */
 	public Profile(String lastName, String firstName, int birthDay, int birthMonth, int birthYear,
 			String email, String[] interests, String[] activitiesAndGroups) {
-		
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.birthDay = birthDay;
+		this.birthMonth = birthMonth;
+		this.birthYear = birthYear;
+		this.email = email;
+		this.interests = interests;
+		this.activitiesAndGroups = activitiesAndGroups;
 	}
 	
 	//SETTERS
@@ -53,16 +61,62 @@ public class Profile {
 	 * setter for birthDay
 	 * @param birthDay
 	 */
-	public void setBirthDay(int birthDay) {
-		this.birthDay = birthDay;
+	public void setBirthDay(int birthDay) throws IllegalArgumentException {
+		//is day a natural number
+		if(birthDay <= 0) {
+			throw new IllegalArgumentException();
+		}
+		//is the month one with 31 days
+		if(this.birthMonth == 1 || this.birthMonth == 3 || this.birthMonth == 5 || this.birthMonth == 7 ||
+				this.birthMonth == 8 || this.birthMonth == 10 || this.birthMonth == 12) {
+			//is the day in the month
+			if(birthDay <= 31) {
+				this.birthDay = birthDay;
+			} else {
+				throw new IllegalArgumentException();
+			}
+		} else if(this.birthMonth != 2) {	//is the month one with 30 days
+			//is the day in the month
+			if(birthDay <= 30) {
+				this.birthDay = birthDay;
+			} else {
+				throw new IllegalArgumentException();
+			}
+		} else {	//the month must be February
+			if(birthDay <= 28) {
+				this.birthDay = birthDay;
+			} else if(birthDay == 29) {
+				//is the year a leap year
+				if(this.birthYear % 4 == 0) {
+					if(this.birthYear % 100 == 0) {
+						if(this.birthYear % 400 == 0) {
+							this.birthDay = birthDay;
+						} else {
+							throw new IllegalArgumentException();
+						}
+					} else {
+						this.birthDay = birthDay;
+					}
+				} else {
+					throw new IllegalArgumentException();
+				}
+			} else {
+				throw new IllegalArgumentException();
+			}
+			
+		}
 	}
 	
 	/**
 	 * setter for birthMonth
 	 * @param birthMonth
 	 */
-	public void setBirthMonth(int birthMonth) {
-		this.birthMonth = birthMonth;
+	public void setBirthMonth(int birthMonth) throws IllegalArgumentException {
+		if(birthMonth > 0 && birthMonth <= 12) {
+			this.birthMonth = birthMonth;
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	/**
@@ -77,8 +131,14 @@ public class Profile {
 	 * setter for email
 	 * @param email
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String email) throws IllegalArgumentException {
+		//regex of at least one letter char, the '@' symbol, least one letter char, the '.' symbol, least one letter char, one or none '.' symbol, none or more letter char
+		String regex = "\\w+[@]\\w+[.]\\w+[.]?\\w*";
+		if(email.matches(regex)) {
+			this.email = email;
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	/**
