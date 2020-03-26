@@ -32,10 +32,10 @@ public class Profile {
 			String email, String[] interests, String[] activitiesAndGroups) {
 		this.lastName = lastName;
 		this.firstName = firstName;
-		this.birthDay = birthDay;
-		this.birthMonth = birthMonth;
 		this.birthYear = birthYear;
-		this.email = email;
+		this.setBirthMonth(birthMonth);
+		this.setBirthDay(birthDay);
+		this.setEmail(email);
 		this.interests = interests;
 		this.activitiesAndGroups = activitiesAndGroups;
 	}
