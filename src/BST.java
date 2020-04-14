@@ -4,13 +4,14 @@
  * @version 1.0
  */
 public class BST {
-	private BSTNode root = null;
+	//DO NOT ADD A getRoot() METHOD
+	private BSTNode root;
 	
 	/**
 	 * Constructor
 	 */
 	public BST() {
-		
+		root = null;
 	}
 	
 	/**
@@ -33,7 +34,7 @@ public class BST {
 	 */
 	private void recInsertProfile(BSTNode node, BSTNode temp) {
 		//is node last name lower alphabetically to temp last name
-		if(node.getProfile().getLastName().compareTo(temp.getProfile().getLastName()) < 0) {
+		if(node.getProfile().getLastName().compareTo(temp.getProfile().getLastName()) > 0) {
 			if(node.getL() == null) {
 				node.setL(temp);
 			} else {
@@ -42,7 +43,7 @@ public class BST {
 		//is node last name equal alphabetically to temp last name
 		} else if(node.getProfile().getLastName().compareTo(temp.getProfile().getLastName()) == 0) {
 			//is node first name lower or equal alphabetically to temp first name
-			if (node.getProfile().getFirstName().compareTo(temp.getProfile().getFirstName()) <= 0) {
+			if (node.getProfile().getFirstName().compareTo(temp.getProfile().getFirstName()) >= 0) {
 				if(node.getL() == null) {
 					node.setL(temp);
 				} else {
