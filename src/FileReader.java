@@ -9,7 +9,6 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class FileReader {
-
 	/**
 	 * from a file reads in a list of profiles to return a 
 	 * binary search tree sorted by name, 
