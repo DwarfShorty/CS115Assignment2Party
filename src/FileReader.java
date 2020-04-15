@@ -71,10 +71,13 @@ public class FileReader {
 		ArrayList<String> list = new ArrayList<String>();
 		Scanner in = new Scanner(l);
 		in.useDelimiter(";");
+		int counter = 0;
 		while(in.hasNext()) {
 			list.add(in.next());
+			counter++;
 		}
-		String[] array = (String[])(list.toArray());
+		String[] array = new String[counter];
+		list.toArray(array);
 		in.close();
 		return array;
 	}
