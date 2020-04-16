@@ -67,5 +67,19 @@ public class BST {
 		}
 	}
 	
+	
+	public void printAlphabetical() {
+		inOrder(root);
+	}
+	
+	private void inOrder(BSTNode n) {
+		if(n.getL() != null) {
+			inOrder(n.getL());
+		}
+		System.out.println(n.getProfile().getName());
+		if(n.getR() != null) {
+			inOrder(n.getR());
+		}
+	}
 
 }
