@@ -175,6 +175,14 @@ public class Profile {
 	}
 	
 	/**
+	 * getter for full name
+	 * @return "this.lastName, this.firstName"
+	 */
+	public String getName() {
+		return String.format("%s, %s", lastName, firstName);
+	}
+	
+	/**
 	 * getter for birthDay
 	 * @return this.birthDay
 	 */
